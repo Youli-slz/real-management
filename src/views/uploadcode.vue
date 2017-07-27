@@ -144,7 +144,7 @@ export default {
             console.log(this.uptoken)
             self.upload();
           // } else if (data.state == 1001) {
-            self.showPop(data.message);
+            // self.showPop(data.message);
           // }
         })
         .catch((error) => {
