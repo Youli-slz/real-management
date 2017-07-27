@@ -76,7 +76,7 @@ export default {
         // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
         save_key: true,
         // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
-        domain: 'http://oe3slowqt.bkt.clouddn.com/',
+        domain: 'http://7xld1x.com1.z0.glb.clouddn.com/',
         //bucket 域名，下载资源时用到，**必需**
         container: 'btnwrap', //上传区域DOM ID，默认是browser_button的父元素，
         max_file_size: '5mb', //最大文件体积限制
@@ -121,7 +121,7 @@ export default {
           'FileUploaded': function(up, file, info) {
             var domain = up.getOption('domain');
             var res = JSON.parse(info);
-            var urlImg = 'http://oe3slowqt.bkt.clouddn.com/' + res.key;
+            var urlImg = 'http://7xld1x.com1.z0.glb.clouddn.com/' + res.key;
             // console.log("img="+urlImg);
             file.imgUrl = urlImg;
             // console.log(self.files[0].imgUrl)
@@ -135,16 +135,17 @@ export default {
     },
     getuptoken: function() {
       var self = this;
-      this.axios.get('http://tym.taoyumin.cn/index.php?r=search/token')
+      this.axios.get('http://wxmp.gatao.cn/mypic/gettoken')
         .then((response) => {
-          var data = JSON.parse(response.data);
+          var data = response.data;
           // console.log(data)
-          if (data.state == 1000) {
-            self.uptoken = data.data;
+          // if (data.state == 1000) {
+            this.uptoken = data.token;
+            console.log(this.uptoken)
             self.upload();
-          } else if (data.state == 1001) {
+          // } else if (data.state == 1001) {
             self.showPop(data.message);
-          }
+          // }
         })
         .catch((error) => {
           console.log(error)
